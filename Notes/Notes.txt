@@ -3,3 +3,7 @@ You can move the camera to align with your current Scene view by selecting it in
 To change a GameObject back to white, apply the material named Default-Material under the “Mesh Renderer” component.
 
 To apply image/texture to a material - In the Inspector window, select the object picker (circle icon) next to the Albedo property and select the Herringbone texture file that you imported. Select Texture window with the Herringbone image file selected.The image is now applied to the material as the Albedo map (or Base map) and will appear in the Material preview in the Inspector.
+
+To get first child of GameObject
+	child = transform.GetChild(0).gameObject;
+

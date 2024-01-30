@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
         //Fire pizza missle
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(misslePrefab, transform.position, misslePrefab.transform.rotation);
+            Instantiate(misslePrefab, transform.position + new Vector3(0, 1, 0), misslePrefab.transform.rotation);
         }
     }
 }

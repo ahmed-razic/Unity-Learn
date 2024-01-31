@@ -30,8 +30,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(gameOver);
-
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;

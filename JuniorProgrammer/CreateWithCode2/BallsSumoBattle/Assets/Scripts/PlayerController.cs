@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float forwardSpeed = 50.0f;
+    [SerializeField] private float forwardSpeed = 70.0f;
     private Vector3 direction;
     private float forwardInput;
     private Rigidbody playerRb;

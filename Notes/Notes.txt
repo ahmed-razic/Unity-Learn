@@ -7,3 +7,12 @@ To apply image/texture to a material - In the Inspector window, select the objec
 To get first child of GameObject
 	child = transform.GetChild(0).gameObject;
 
+To reset player position
+    void ResetPlayerPosition ()
+    {
+        player.transform.position = new Vector3(0, 1, -7);
+        player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+
+    }
+

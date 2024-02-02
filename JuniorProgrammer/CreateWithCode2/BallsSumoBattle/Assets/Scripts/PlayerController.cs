@@ -58,4 +58,12 @@ public class PlayerController : MonoBehaviour
             collision.rigidbody.AddForce(powerupStrength * hitDirection, ForceMode.Impulse);
         }
     }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Island"))
+        {
+            transform.position = Vector3.zero;
+        }
+    }
 }

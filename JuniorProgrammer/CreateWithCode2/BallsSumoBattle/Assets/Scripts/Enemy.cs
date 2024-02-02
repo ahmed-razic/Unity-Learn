@@ -21,5 +21,10 @@ public class Enemy : MonoBehaviour
     {
         followVector = (player.transform.position - gameObject.transform.position).normalized;
         enemyRb.AddForce(followVector * speed);
+
+        if(transform.position.y < - 5f)
+        {
+            Destroy(gameObject);
+        }
     }
 }

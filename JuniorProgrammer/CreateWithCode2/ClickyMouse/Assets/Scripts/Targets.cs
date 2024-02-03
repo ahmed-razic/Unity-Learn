@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Targets : MonoBehaviour
 {
+    public int pointValue;
     private Rigidbody targetRb;
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -14,12 +16,13 @@ public class Targets : MonoBehaviour
         targetRb.AddForce(Vector3.up * Random.Range(13, 17), ForceMode.Impulse);
         targetRb.AddTorque(Random.Range(-10, 10), Random.Range(-10, 10), Random.Range(-10, 10), ForceMode.Impulse);
 
-        Debug.Log(transform.position);
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     private void OnMouseDown()
     {
         Destroy(gameObject);
+        gameManager.UpdateScore(pointValue);
     }
 
     private void OnTriggerEnter(Collider other)

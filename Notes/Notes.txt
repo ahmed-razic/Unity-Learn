@@ -16,3 +16,6 @@ To reset player position
 
     }
 
+Canvas holds all UI elements (buttons, text,...)
+
+using is used for importing other libraries into a current script

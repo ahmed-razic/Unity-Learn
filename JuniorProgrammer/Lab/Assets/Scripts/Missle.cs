@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Missle : MonoBehaviour
 {
-    private readonly float speed = 10.0f;
+    [SerializeField] private float speed = 30f;
     private Effects effects;
-    private PlayerController player;
 
     // Start is called before the first frame update
     void Start()
     {
         effects = GameObject.Find("Effects").GetComponent<Effects>();
-        player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -21,7 +19,6 @@ public class Enemy : MonoBehaviour
         transform.Translate(speed * Time.deltaTime * Vector3.forward);
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Border"))
@@ -29,14 +26,12 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
             effects.transform.position = transform.position;
             effects.PlayExplosion();
-            //Destroy(other.gameObject);
+            Destroy(other.gameObject);
             Destroy(gameObject);
-            player.ResetPlayerPosition();
         }
     }
 }
-

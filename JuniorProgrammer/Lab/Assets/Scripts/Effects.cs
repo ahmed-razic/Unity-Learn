@@ -40,4 +40,9 @@ public class Effects : MonoBehaviour
     {
         effectsAudioSource.PlayOneShot(bounce);
     }
+
+    public void PlayShot()
+    {
+
+    }
 }

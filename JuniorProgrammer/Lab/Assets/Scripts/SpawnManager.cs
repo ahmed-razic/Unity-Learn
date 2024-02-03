@@ -7,6 +7,7 @@ public class SpawnManager : MonoBehaviour
     public List<GameObject> spawnList = new List<GameObject>();
     private readonly float randomX = 20.0f;
 
+
     // Start is called before the first frame update
     void Start()
     {

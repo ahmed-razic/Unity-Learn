@@ -8,6 +8,7 @@ TagManager:
   - Powerup
   - Border
   - Explosion
+  - Missle
   layers:
   - Default
   - TransparentFX

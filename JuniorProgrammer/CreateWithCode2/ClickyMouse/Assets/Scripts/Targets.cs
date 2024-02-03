@@ -9,6 +9,7 @@ public class Targets : MonoBehaviour
     private Rigidbody targetRb;
     private GameManager gameManager;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,9 +23,12 @@ public class Targets : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Destroy(gameObject);
-        gameManager.UpdateScore(pointValue);
-        Instantiate(explosion, transform.position, explosion.transform.rotation);
+        if (gameManager.isGameActive)
+        {
+            Destroy(gameObject);
+            gameManager.UpdateScore(pointValue);
+            Instantiate(explosion, transform.position, explosion.transform.rotation);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,6 +36,10 @@ public class Targets : MonoBehaviour
         if (other.gameObject.CompareTag("Sensor"))
         {
             Destroy(gameObject);
+            if (gameObject.CompareTag("Bad"))
+            {
+                gameManager.GameOver();
+            }
         }
     }
 }

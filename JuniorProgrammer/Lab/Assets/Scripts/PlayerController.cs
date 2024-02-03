@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class PlayerController : MonoBehaviour
     private Effects effects;
     public GameObject missle;
 
+    public bool hasPowerup;
+    public GameObject powerupIndicator;
+    public int powerUpDuration = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +37,8 @@ public class PlayerController : MonoBehaviour
         {
             Instantiate(missle, transform.position + new Vector3(0, 0, 1.5f), missle.transform.rotation);
         }
+
+        powerupIndicator.transform.position = transform.position + new Vector3(0, -0.6f, 0);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -43,6 +49,17 @@ public class PlayerController : MonoBehaviour
             effects.transform.position = transform.position;
             effects.PlayFireworks();
             Destroy(collision.gameObject);
+
+            hasPowerup = true;
+            powerupIndicator.SetActive(true);
+            StartCoroutine(PowerupCooldown());
+        }
+
+        IEnumerator PowerupCooldown()
+        {
+            yield return new WaitForSeconds(powerUpDuration);
+            hasPowerup = false;
+            powerupIndicator.SetActive(false);
         }
 
         if (collision.gameObject.CompareTag("Border"))
@@ -57,6 +74,4 @@ public class PlayerController : MonoBehaviour
         transform.GetComponent<Rigidbody>().velocity = Vector3.zero;
         transform.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
     }
-
-
 }

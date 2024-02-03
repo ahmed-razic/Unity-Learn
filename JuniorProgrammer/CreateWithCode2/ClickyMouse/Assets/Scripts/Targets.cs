@@ -5,6 +5,7 @@ using UnityEngine;
 public class Targets : MonoBehaviour
 {
     public int pointValue;
+    public ParticleSystem explosion;
     private Rigidbody targetRb;
     private GameManager gameManager;
 
@@ -23,6 +24,7 @@ public class Targets : MonoBehaviour
     {
         Destroy(gameObject);
         gameManager.UpdateScore(pointValue);
+        Instantiate(explosion, transform.position, explosion.transform.rotation);
     }
 
     private void OnTriggerEnter(Collider other)

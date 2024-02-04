@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Threading;
 
 
 public class GameManagerX : MonoBehaviour
@@ -11,8 +12,8 @@ public class GameManagerX : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI gameOverText;
-    public GameObject titleScreen;
-    public Button restartButton; 
+    public Canvas titleScreen;
+    public Button restartButton;
 
     public List<GameObject> targetPrefabs;
 
@@ -21,7 +22,7 @@ public class GameManagerX : MonoBehaviour
     private float spawnRate = 1.5f;
     public bool isGameActive;
 
-    private float spaceBetweenSquares = 2.5f; 
+    private float spaceBetweenSquares = 2.5f;
     private float minValueX = -3.75f; //  x value of the center of the left-most square
     private float minValueY = -3.75f; //  y value of the center of the bottom-most square
 
@@ -31,23 +32,25 @@ public class GameManagerX : MonoBehaviour
     {
         spawnRate /= difficulty;
         isGameActive = true;
-        StartCoroutine(SpawnTarget(spawnRate));
         score = 0;
         countdown = 60f;
+        StartCoroutine(SpawnTarget(spawnRate));
         UpdateScore(0);
-        titleScreen.SetActive(false);
+        titleScreen.gameObject.SetActive(false);
     }
 
-    private void Update()
+    void Update()
     {
-        countdown -= Time.deltaTime;
-        float roundTime = Mathf.Round(countdown);
-        timeText.text = "Time: " + roundTime;
-
-        if(roundTime == 0)
+        if (isGameActive == true)
         {
-            isGameActive = false;
-            GameOver();
+            countdown -= Time.deltaTime;
+            float roundTime = Mathf.Round(countdown);
+            timeText.text = "Time: " + roundTime;
+
+            if (roundTime == 0)
+            {
+                GameOver();
+            }
         }
     }
 
@@ -58,11 +61,11 @@ public class GameManagerX : MonoBehaviour
         {
             yield return new WaitForSeconds(spawnRate);
 
-           int index = Random.Range(0, targetPrefabs.Count);
+            int index = Random.Range(0, targetPrefabs.Count);
             if (isGameActive)
             {
                 Instantiate(targetPrefabs[index], RandomSpawnPosition(), targetPrefabs[index].transform.rotation);
-            }            
+            }
         }
     }
 
@@ -74,7 +77,6 @@ public class GameManagerX : MonoBehaviour
 
         Vector3 spawnPosition = new Vector3(spawnPosX, spawnPosY, 0);
         return spawnPosition;
-
     }
 
     // Generates random square index from 0 to 3, which determines which square the target will appear in
@@ -103,5 +105,4 @@ public class GameManagerX : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
 }

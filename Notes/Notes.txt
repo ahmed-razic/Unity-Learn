@@ -24,3 +24,6 @@ To add function to an OnClick event for Button, drag script with that function t
 
 To make changes to a button, make a reference in game manager script
 
+To add prefab to other prefab, open prefab editor for parent and drag into it child prefab. This is usefull when having large nested prefabs or changing simple game objects with final characters. Then add box collider or rigid body to a child character prefab. To remove parent prefab, select it and then uncheck mesh renderer component and its collider.
+
+

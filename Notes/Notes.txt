@@ -18,4 +18,8 @@ To reset player position
 
 Canvas holds all UI elements (buttons, text,...)
 
-using is used for importing other libraries into a current script
+using directive is used for importing other libraries into a current script
+
+To add function to an OnClick event for Button, drag script with that function to OnClick field in Button properties, then select appropriate function from that class.
+
+

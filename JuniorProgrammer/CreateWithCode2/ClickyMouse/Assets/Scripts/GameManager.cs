@@ -8,19 +8,22 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public List<GameObject> targets;
-    private readonly float spawnTime = 1.0f;
+    private float spawnTime = 3f;
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
+    public Canvas titleScreen;
+
     private int score = 0;
     public bool isGameActive;
 
     public Button restartButton;
 
-    // Start is called before the first frame update
-    void Start()
+    public void StartGame(int difficulty)
     {
+        titleScreen.gameObject.SetActive(false);
         isGameActive = true;
+        spawnTime /= difficulty;
         StartCoroutine(SpawnTargets());
         UpdateScore(0);
     }
@@ -32,7 +35,6 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(spawnTime);
             int randomIndex = Random.Range(0, targets.Count);
             Instantiate(targets[randomIndex]);
-            Debug.Log(randomIndex);
         }
     }
 
@@ -42,16 +44,16 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: " + score;
     }
 
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("Clicky Mouse");
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     public void GameOver()
     {
         gameOverText.gameObject.SetActive(true);
         isGameActive = false;
         restartButton.gameObject.SetActive(true);
-    }
-
-    public void RestartGame()
-    {
-        SceneManager.LoadScene("Clicky Mouse");
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

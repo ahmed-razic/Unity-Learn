@@ -22,4 +22,5 @@ using directive is used for importing other libraries into a current script
 
 To add function to an OnClick event for Button, drag script with that function to OnClick field in Button properties, then select appropriate function from that class.
 
+To make changes to a button, make a reference in game manager script
 

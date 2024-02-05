@@ -60,3 +60,27 @@ For the Sprite you created from an image, you must add the collider yourself.
 The RigidBody 2D Component also gives a Sprite physical properties, so what is the difference? RigidBody properties control how the GameObject interacts with gravity and air density. 
 For example, the RigidBody properties on the Circle Sprite make it fall, but when it hits another GameObject, it will pass through it. The Collider Component adds additional properties 
 that determine how objects interact with each other. By adding a Collider Component to the Circle and a Sprite below it to represent the ground, the Circle will stop its downward trajectory when it reaches the ground.
+
+
+
+Access attributes: public, private, protected, static, const, readonly
+
+public - can be accessed from instance, other classes instances and Unity editor
+private - can be accessed only in instance
+protected - can be accessed from class instance or instances of inherited classes. Can be private
+static - can be accesed from anywhere but not through an instance. Instead, it's referenced through the type name. Must be public to be accessed.
+const - constant value must be declared during declaration
+readonly - can be declared without value, and only change once during first initialization in Constructor, init-only setter of the type in which the field is defined or a variable initializator.
+
+
+Event functions: Awake(), Start(), FixedUpdate(), Update(), LateUpdate()
+
+Start is called only once at the very start of the game when certain object must do something as soon as game starts.
+Awake is called when game object is first called.
+FixedUpdate is used when you have movement and physics, it is called before Update.
+Update is usefull for userInputs.
+LateUpdate is usefull for camera update because it is called when all calculations are done so that we can have fluid movement. It is usefull for following of player.
+
+FixedUpdate, Update and LateUpdate are called continously in that order.
+
+

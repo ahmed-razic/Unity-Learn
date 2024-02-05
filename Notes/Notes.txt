@@ -84,3 +84,8 @@ LateUpdate is usefull for camera update because it is called when all calculatio
 FixedUpdate, Update and LateUpdate are called continously in that order.
 
 
+
+
+AddRelativeForce() adds force to a rigidbody relative to its coordinate system.
+
+To use math in unity, use Mathf library.

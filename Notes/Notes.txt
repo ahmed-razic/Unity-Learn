@@ -6,7 +6,8 @@ Background music is added to the main camera
 
 To add sounds to Player first add AudioSource component, Audio clips. sjort audio clips are played using PlayOneShot()
 
-To make camera rotate around certain point, make empty game object at that point and camera as a child of that empty object. When Empty object rotates around itself it will rotate camera as well, because child moves with its parent.
+To make camera rotate around certain point, make empty game object at that point and camera as a child of that empty object. 
+When Empty object rotates around itself it will rotate camera as well, because child moves with its parent.
 
 OnCollisionEnter() is used when there is a need to do something with the physics
 
@@ -18,7 +19,8 @@ You can move the camera to align with your current Scene view by selecting it in
 
 To change a GameObject back to white, apply the material named Default-Material under the “Mesh Renderer” component.
 
-To apply image/texture to a material - In the Inspector window, select the object picker (circle icon) next to the Albedo property and select the Herringbone texture file that you imported. Select Texture window with the Herringbone image file selected.The image is now applied to the material as the Albedo map (or Base map) and will appear in the Material preview in the Inspector.
+To apply image/texture to a material - In the Inspector window, select the object picker (circle icon) next to the Albedo property and select the Herringbone texture file that you imported. 
+Select Texture window with the Herringbone image file selected.The image is now applied to the material as the Albedo map (or Base map) and will appear in the Material preview in the Inspector.
 
 To get first child of GameObject
 	child = transform.GetChild(0).gameObject;
@@ -40,16 +42,21 @@ To add function to an OnClick event for Button, drag script with that function t
 
 To make changes to a button, make a reference in game manager script
 
-To add prefab to other prefab, open prefab editor for parent and drag into it child prefab. This is usefull when having large nested prefabs or changing simple game objects with final characters. Then add box collider or rigid body to a child character prefab. To remove parent prefab, select it and then uncheck mesh renderer component and its collider.
+To add prefab to other prefab, open prefab editor for parent and drag into it child prefab. This is usefull when having large nested prefabs or changing simple game objects with final characters. 
+Then add box collider or rigid body to a child character prefab. To remove parent prefab, select it and then uncheck mesh renderer component and its collider.
 
 
 
 The GameObjects in 2D Scenes are called Sprites. Sprites are typically imported images with specific properties that allow them to be used as interactive 2D GameObjects.
 
-Unity uses a Y-up coordinate system, which applies in 2D as well as 3D. Y is up, and Z is toward and away from the player’s point of view. Therefore, changes to scale in the Z direction are not visible to the player. Changes to position in Z will place Sprites behind or in front of one another
+Unity uses a Y-up coordinate system, which applies in 2D as well as 3D. Y is up, and Z is toward and away from the player’s point of view. 
+Therefore, changes to scale in the Z direction are not visible to the player. Changes to position in Z will place Sprites behind or in front of one another
 
-In the Hierarchy window, right-click and select 2D Object > Sprite > Circle to create an empty Sprite that will act as a placeholder.  At this point, you can’t see the Sprite in Scene View, but it will become visible once you assign an image to it.
+In the Hierarchy window, right-click and select 2D Object > Sprite > Circle to create an empty Sprite that will act as a placeholder.  
+At this point, you can’t see the Sprite in Scene View, but it will become visible once you assign an image to it.
 
 For the Sprite you created from an image, you must add the collider yourself.
 
-The RigidBody 2D Component also gives a Sprite physical properties, so what is the difference? RigidBody properties control how the GameObject interacts with gravity and air density. For example, the RigidBody properties on the Circle Sprite make it fall, but when it hits another GameObject, it will pass through it. The Collider Component adds additional properties that determine how objects interact with each other. By adding a Collider Component to the Circle and a Sprite below it to represent the ground, the Circle will stop its downward trajectory when it reaches the ground.
+The RigidBody 2D Component also gives a Sprite physical properties, so what is the difference? RigidBody properties control how the GameObject interacts with gravity and air density. 
+For example, the RigidBody properties on the Circle Sprite make it fall, but when it hits another GameObject, it will pass through it. The Collider Component adds additional properties 
+that determine how objects interact with each other. By adding a Collider Component to the Circle and a Sprite below it to represent the ground, the Circle will stop its downward trajectory when it reaches the ground.

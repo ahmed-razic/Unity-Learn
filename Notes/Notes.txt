@@ -72,6 +72,7 @@ static - can be accesed from anywhere but not through an instance. Instead, it's
 const - constant value must be declared during declaration
 readonly - can be declared without value, and only change once during first initialization in Constructor, init-only setter of the type in which the field is defined or a variable initializator.
 
+ALL VARIABLES/METHODS ARE PRIVATE BY DEFAULT IN A CLASS.
 
 Event functions: Awake(), Start(), FixedUpdate(), Update(), LateUpdate()
 
@@ -89,3 +90,7 @@ FixedUpdate, Update and LateUpdate are called continously in that order.
 AddRelativeForce() adds force to a rigidbody relative to its coordinate system.
 
 To use math in unity, use Mathf library.
+
+If function accepts only string argument, then a number can be implicitly convered to text if used with string literals 
+SomeFunction.SetText("Speed: " + speed + " kph")
+

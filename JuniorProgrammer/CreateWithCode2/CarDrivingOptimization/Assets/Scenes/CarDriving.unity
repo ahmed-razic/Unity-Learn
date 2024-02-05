@@ -1313,7 +1313,7 @@ Transform:
   m_GameObject: {fileID: 839068815}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.72, z: -0.83}
+  m_LocalPosition: {x: 0, y: 1.26, z: -1.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1755,13 +1755,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c49cfb69598a5da48beaabbb5fa75631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horsePower: 20000
+  horsePower: 30000
   turnPower: 100
   centerOfMass: {fileID: 839068815}
   speedometerText: {fileID: 9079997}
   rpmText: {fileID: 1091035747}
   speed: 0
   rpm: 0
+  wheelsOnGround: 0
+  allWheels:
+  - {fileID: 725674493}
+  - {fileID: 1539899950}
+  - {fileID: 1091378625}
+  - {fileID: 1799001364}
 --- !u!54 &1674411132
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1770,7 +1776,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1674411126}
   serializedVersion: 4
-  m_Mass: 700
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

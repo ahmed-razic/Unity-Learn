@@ -94,3 +94,44 @@ To use math in unity, use Mathf library.
 If function accepts only string argument, then a number can be implicitly convered to text if used with string literals 
 SomeFunction.SetText("Speed: " + speed + " kph")
 
+Application.Quit only works in the built application, not when you’re testing in the Editor. To make it work similarly there, you’ll need to use a special method to stop PlayMode. 
+
+All lines starting with # aren’t really “code”. They won’t be compiled and executed — they’re actually instructions for the compiler. 
+
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+You’ve added conditional instructions to the compiler around the namespace: #if UNITY_EDITOR, so that the namespace will only be included when you are compiling within the Unity Editor.
+
+
+DontDestroyOnLoad: A method in Unity that marks a GameObject to be saved in memory even when loading or unloading a new scene.DontDestroyOnLoad: A method in Unity that marks a GameObject to be saved in memory even when loading or unloading a new scene.
+
+Static classes and class members: Static class members can be accessed from anywhere without having to reference a specific object. You may already have used some of these, such as Time.deltaTime or Vector3.forward. Those aren’t a specific time object or a specific vector3 — the format for static class members is ClassName.memberName.
+
+singleton. You use it to ensure that only a single instance of the Object can ever exist, so it acts as a central point of access.
+
+The process of converting complex data into a format in which it can be stored is called serialization. When you’re ready to access the data again, the process of converting it back is called deserialization. 
+Flow diagram shows the process of serialization: an object being converted to bytes and then stored; the deserialization process shows this in reverse.
+There are different formats that you can use to store data, depending on what the data is and what you want to do with it. In this case, you’re going to use the JSON format. JSON is a text format used to store data and exchange it between platforms. It was first developed for the web, and its full name is  JavaScript Object Notation. The JSON format stores data in the form of a key:value pair. The key is a string, and the value can be:a number, a string, a Boolean (true/false), an array of values, another JSON object. 
+{
+  "name": "John",
+  "age": 27,
+  "address": {
+    "streetAddress": "21 2nd Street",
+    "city": "New York"
+  }
+  "pet": [“dog”, “cat”]
+}
+
+
+string json = JsonUtility.ToJson(myData); - To serialize
+PlayerData myData = JsonUtility.FromJson<PlayerData>(json); - To deserialize
+
+
+JsonUtility doesn’t work on primitive types, arrays, lists, or dictionaries. 
+As you might expect, JsonUtility only works on the Serializable type — MonoBehaviour or the other classes/structs you write onto which you can add the [Serializable] attribute.
+
+Why are you creating a class and not giving the MainManager instance directly to the JsonUtility? Well, most of the time you won’t save everything inside your classes. It’s good practice and more efficient to use a small class that only contains the specific data that you want to save
+
+

@@ -12,7 +12,7 @@ public class SceneOneHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inputName.SetText("Welcome to scene 1 " + MainManager.Instance.inputName);
+        inputName.SetText(MainManager.Instance.inputName + ", welcome to scene 1");
         cube = GameObject.Find("Cube").GetComponent<Renderer>();
         cube.material.SetColor("_Color", Color.green);
     }

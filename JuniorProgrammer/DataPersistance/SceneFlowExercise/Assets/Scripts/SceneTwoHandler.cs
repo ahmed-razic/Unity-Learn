@@ -12,7 +12,7 @@ public class SceneTwoHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inputName.SetText("Welcome to Scene 2 " + MainManager.Instance.inputName);
+        inputName.SetText(MainManager.Instance.inputName + ", welcome to scene 2");
         sphere = GameObject.Find("Sphere").GetComponent<Renderer>();
         sphere.material.SetColor("_Color", Color.blue);
     }

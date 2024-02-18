@@ -11,19 +11,18 @@ public class SceneTwoHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //inputName = GameObject.Find("Input Name Text").GetComponent<TextMeshProUGUI>();
-        //inputName.SetText("Welcome " + MainManager.Instance.inputName);
-        Debug.Log("Welcome " + MainManager.Instance.inputName + " (Scene Two)");
+        inputName.SetText("Welcome to Scene 2 " + MainManager.Instance.inputName);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Welcome " + MainManager.Instance.inputName + " (Scene Two)");
+
     }
 
     public void ToSceneOne()
     {
+
         SceneManager.LoadScene(1);
     }
 

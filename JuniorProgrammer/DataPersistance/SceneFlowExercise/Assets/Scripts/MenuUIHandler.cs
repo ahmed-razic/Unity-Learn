@@ -26,28 +26,32 @@ public class MenuUIHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (MainManager.Instance.inputName.Length != 0)
-        {
-            //inputNameField.transform.Find("Text Area").transform.Find("Placeholder").GetComponent<TMP_Text>().gameObject.SetActive(false);
-            inputNameField.gameObject.SetActive(false);
-            welcome.gameObject.SetActive(true);
-            welcome.SetText("Welcome " + MainManager.Instance.inputName);
-        }
+
     }
 
     public void SaveNameClicked()
     {
         MainManager.Instance.SaveName();
+        DisplayName();
     }
 
     public void LoadNameClicked()
     {
         MainManager.Instance.LoadName();
+        DisplayName();
+    }
+
+    public void DisplayName()
+    {
+        //inputNameField.gameObject.SetActive(false);
+        welcome.gameObject.SetActive(true);
+        welcome.SetText("Welcome " + MainManager.Instance.inputName);
     }
 
     public void NewName()
     {
-        inputNameField.gameObject.SetActive(true);
+        MainManager.Instance.DeleteName();
+        //inputNameField.gameObject.SetActive(true);
         welcome.gameObject.SetActive(false);
     }
     public void StartSceneOne()

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+
 public class MainManager : MonoBehaviour
 {
     public static MainManager Instance;
@@ -46,5 +47,11 @@ public class MainManager : MonoBehaviour
             SaveData data = JsonUtility.FromJson<SaveData>(json);
             inputName = data.inputName;
         }
+    }
+
+    public void DeleteName()
+    {
+        string path = Application.persistentDataPath + "/savefile.json";
+        File.Delete(path);
     }
 }

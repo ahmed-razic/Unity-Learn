@@ -45,6 +45,11 @@ public class MenuUIHandler : MonoBehaviour
         MainManager.Instance.LoadName();
     }
 
+    public void NewName()
+    {
+        inputNameField.gameObject.SetActive(true);
+        welcome.gameObject.SetActive(false);
+    }
     public void StartSceneOne()
     {
         SceneManager.LoadScene(1);

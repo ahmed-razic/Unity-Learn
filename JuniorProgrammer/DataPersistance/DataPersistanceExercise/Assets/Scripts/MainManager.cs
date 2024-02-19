@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,10 +19,19 @@ public class MainManager : MonoBehaviour
     
     private bool m_GameOver = false;
 
-    
+    private int m_HighScoreValue;
+    private string m_HighScoreName;
+
+
+    private void Awake()
+    {
+        m_HighScoreName = ScoreManager.Instance.playerName;
+        
+    }
     // Start is called before the first frame update
     void Start()
     {
+
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
@@ -72,5 +82,35 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+        SaveHighScore();
+    }
+
+    [System.Serializable]
+    public class SaveData
+    {
+        public string highScoreName;
+        public int highScoreValue;
+    }
+
+    public void SaveHighScore()
+    {
+        SaveData data = new SaveData();
+        data.highScoreName = m_HighScoreName;
+        data.highScoreValue = m_Points;
+
+        string json = JsonUtility.ToJson(data);
+        File.WriteAllText(Application.persistentDataPath + "/Highscore.json", json);
+    }
+
+    public void LoadHighScore()
+    {
+        string path = Application.persistentDataPath + "/Highscore.json";
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+            m_HighScoreName = data.highScoreName;
+            m_HighScoreValue = data.highScoreValue;
+        }
     }
 }

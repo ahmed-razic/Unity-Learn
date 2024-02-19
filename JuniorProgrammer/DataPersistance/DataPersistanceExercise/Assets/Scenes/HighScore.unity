@@ -357,8 +357,8 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1756932961}
-        m_TargetAssemblyTypeName: ScoreManager, Assembly-CSharp
+      - m_Target: {fileID: 1667182956}
+        m_TargetAssemblyTypeName: HighScore, Assembly-CSharp
         m_MethodName: SetPlayerName
         m_Mode: 1
         m_Arguments:
@@ -1805,7 +1805,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddb70ad5a312fc14ca390f860a414f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameInputField: {fileID: 556390569}
   playerName: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

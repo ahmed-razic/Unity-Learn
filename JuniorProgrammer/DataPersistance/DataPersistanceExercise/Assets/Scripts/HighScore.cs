@@ -9,9 +9,9 @@ public class HighScore : MonoBehaviour
 {
     public TMP_InputField nameInputField;
 
-    public void AddName()
+    public void SetPlayerName()
     {
-        //MainManager.Instance.SetHighScoreName(nameInputField.textComponent.text);
+        ScoreManager.Instance.playerName = nameInputField.textComponent.text;
     }
 
     public void StartGame()

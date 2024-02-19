@@ -20,16 +20,13 @@ public class MainManager : MonoBehaviour
 
     private bool m_GameOver = false;
 
-    private string m_HighScoreName;
+    public string m_HighScoreName;
     private int m_HighScoreValue = 0;
 
 
     private void Awake()
     {
         m_HighScoreName = ScoreManager.Instance.playerName;
-        m_HighScoreValue = 0;
-        LoadHighScore();
-        DisplayHighScore();
     }
 
     private void DisplayHighScore()
@@ -40,6 +37,9 @@ public class MainManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        LoadHighScore();
+        DisplayHighScore();
 
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
@@ -107,7 +107,7 @@ public class MainManager : MonoBehaviour
     public void SaveHighScore()
     {
         SaveData data = new SaveData();
-        data.highScoreName = m_HighScoreName;
+        data.highScoreName = ScoreManager.Instance.playerName;
         data.highScoreValue = m_Points;
 
         string json = JsonUtility.ToJson(data);

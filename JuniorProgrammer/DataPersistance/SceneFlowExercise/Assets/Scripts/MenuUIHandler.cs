@@ -35,6 +35,16 @@ public class MenuUIHandler : MonoBehaviour
         }
     }
 
+    public void SaveNameClicked()
+    {
+        MainManager.Instance.SaveName();
+    }
+
+    public void LoadNameClicked()
+    {
+        MainManager.Instance.LoadName();
+    }
+
     public void StartSceneOne()
     {
         SceneManager.LoadScene(1);
@@ -47,6 +57,8 @@ public class MenuUIHandler : MonoBehaviour
 
     public void Exit()
     {
+        MainManager.Instance.SaveName();
+
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
 #else

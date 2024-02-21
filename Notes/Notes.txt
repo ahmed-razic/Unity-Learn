@@ -135,3 +135,133 @@ As you might expect, JsonUtility only works on the Serializable type — MonoBeh
 Why are you creating a class and not giving the MainManager instance directly to the JsonUtility? Well, most of the time you won’t save everything inside your classes. It’s good practice and more efficient to use a small class that only contains the specific data that you want to save
 
 
+To save changes in Projects settings save the project by going to File > Save Project
+
+To add sprite renderer to game object, create empty game object and add spriterenderer component
+
+Background music is added to the main camera
+
+To add sounds to Player first add AudioSource component, Audio clips. sjort audio clips are played using PlayOneShot()
+
+To make camera rotate around certain point, make empty game object at that point and camera as a child of that empty object. When Empty object rotates around itself it will rotate camera as well, because child moves with its parent.
+
+OnCollisionEnter() is used when there is a need to do something with the physics
+
+IEnumerator FunctionName() { yield return new WaitForSeconds(7); doSomething; } doSomething is activated after 7 seconds. This is called using StartCoroutine(FunctionName())
+
+We are ready to work through our existing code and improve it without changing its external functionality — a process called refactoring. Refactoring is an important step in the development process, in which you can clean up any messy code you wrote earlier, and also reexamine the ways your code will be used in future iterations of the project. In other words, in the development phase you wrote code that “works well for now,” and in the refactoring phase you will revise the code to “work well later.”
+
+The Unity Scripting API lists the actual paths per platform
+https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html
+
+Abstraction
+The first pillar of OOP is all about keeping your code clean and simple for the programmer using it, whether that is you or someone else. Abstraction is the process of removing complex code from the scripts where other programmers will see it, and only exposing the functionality other programmers really need. When you “abstract out” the details, you reduce duplicate code and provide easy access to the most useful functions. You’re actually already quite familiar with this pillar, because you’ve benefited from it frequently throughout this pathway. Whenever you call on a method to perform a task rather than writing out all of the code by hand, you’re benefiting from abstraction! 
+The core tenet of abstraction is to hide unnecessary complexity from the other programmers, and only expose what is needed to make the code run as it’s meant to. It means taking the complex inner workings and replacing them with abstract, more reusable pieces of code.  Following this principle also simplifies the process of refactoring later.
+
+
+
+Inheritance and polymorphism
+Inheritance, much like the name implies, focuses on parent-child relationships between different objects. Polymorphism is a result of inheritance, and refers to the process of a child class modifying what it inherits from a parent class. Used together, inheritance and polymorphism can reduce the amount of code you have to write in an application. 
+nheritance is the process of creating a primary class (also known as a parent class) from which other classes (called child classes) can be created. A child class takes on, or inherits, all of the features of the parent class automatically. It’s common to have different classes share similar features in an application. 
+
+Polymorphism allows you to change the functionality of what an object inherits from its parent class. This is fine if you want the Thief to deal exactly the same amount of damage as the Enemy class, but what if you wanted it to be a different value? These changes are accomplished through the process known as method overriding. 
+The method that you want to override in the parent class must first be marked for overriding. This is done by making it a virtual method. Identifying a method as virtual indicates that it can, but doesn’t have to, be overridden. This is ideal for the current example, because while the Thief child class may need to modify the DealDamage method, another child class, such as the Scoundrel class, may not.
+Once DealDamage is set to virtual, the Thief class can override it by creating its own  method for DealDamage. Here, instead of virtual, we’ll use the override notation. 
+
+Unlike virtual methods for which overriding is optional, this method uses the abstract notation, which indicates that it must be overridden. Abstract methods are useful when you recognize that all child classes will need a certain type of functionality, but that functionality should be coded separately in each child class.
+
+Method overloading
+Methods can’t share names — right? In most cases this is true, except for this special circumstance, which is referred to as method overloading. Notice that the both GoTo methods have different parameter types, and have different functionality. Method overloading effectively makes a single method multi-purpose. When the user selects a target, this pair of overloads will handle the navigation depending on the type of object they selected. 
+The first GoTo method takes a Building class as a parameter, which is collected when the user right-clicks on a resource pile or on the base. This parameter is then passed to the SetTarget method in the Unit script. 
+The second GoTo method takes a Vector3 parameter, for situations when the user selects a random point in the warehouse rather than a resource pile. 
+You could write these as separate methods, but then you’d have to remember multiple calls! With method overloading, you only have to remember one call, and the data type(s) being passed will determine which code to run.. 
+
+Encapsulation
+Much like abstraction, encapsulation focuses heavily on maintaining a level of separation between the underlying complexity of your code and other code that uses it. Due to their similarity, you will sometimes see some followers of OOP practices group abstraction and encapsulation into a single pillar, typically under the header of encapsulation. However, we’re making a distinction that we think is important: while abstraction is all about summarizing code to make it simpler for other programmers, encapsulation is all about protecting values and data, as if they are enclosed in a capsule, so that you control what others do and do not have access to. A major theme of encapsulation is safety in code — in other words, the process of ensuring that code is only used as it is intended to be used, and the values and data you are manipulating can’t be corrupted. In encapsulated code, other programmers can’t easily change the values of variables or the properties of objects. It’s impossible to account for all of the different ways that other scripts might access your code, so it's far better to encapsulate what you’ve created so it can only perform as intended. Accessibility of variables and methods is a major consideration in encapsulation. As a general rule, you want to keep your variables private as often as possible, and set methods to public only when you’re sure that you need to call them from anywhere. Otherwise, they can be used by anyone. 
+
+public static MainManager Instance { get; private set; } // add private setter
+
+With this code, you can now set the property’s value from within the class, but only get it from outside the class. It’s encapsulated to only accept modifications from its own class, safe from misuse and corruption from the outside world!
+
+To perform validations or calculations within a getter or setter, you need a backing field for your property: a private field (variable) that stores the data exposed by the public property. 
+
+private float m_ProductionSpeed = 0.5f;
+public float ProductionSpeed 
+{
+    get { return m_ProductionSpeed; } // getter returns backing field
+    set
+    {
+    if (value < 0.0f)
+        {
+            Debug.LogError("You can't set a negative production speed!");
+        }
+        else
+        {
+            m_ProductionSpeed = value; // original setter now in if/else statement
+        }
+    }
+}
+
+
+Unity’s Profiling tool is ideal for locating hard to find issues that may be driving down your frame rate. The Profiler produces a detailed report of precisely what is occurring in an application frame by frame, including what scripts are called, how memory is being allocated, how visuals are rendered on the screen, and more. You can see anything that affects your project’s performance in the Profiler.
+
+When profiling, we want to pay specific attention to this millisecond completion rate, as it's the key to achieving the final frame rate goal. Depending on the target frame rate, you will have a specific millisecond budget per frame. The way to calculate this is:
+1000 ms / target frames per second = ms budget
+So, to reach a target of 60 FPS, each frame has a millisecond budget of 16. This means that the frame currently being profiled is more than seven times what it needs to be!
+
+Abstraction: reducing duplicate code by “abstracting out” repeated details or information.
+
+Encapsulation: “encapsulating” data and the methods that manipulate that data together in a class, protecting it from misuse by other classes (getters and setters).
+
+Inheritance: child classes deriving (or “inheriting”) behavior from parent classes.
+
+Polymorphism: changing (“morphing”) methods into many (“poly”) forms (i.e., method overloading and method overriding).
+
+1.  Inheritance - choose your objects
+To begin your brainstorming, what objects can you think of that derive behaviors from a more generic object? What objects can you think of that are subtypes of other objects? For example:
+Animal → Cat / Dog 
+Vehicle → Plane / Car / Boat 
+Toaster → Basic toaster / Deluxe toaster / Premium toaster 
+These are just a few examples of parent/child relationships that you could implement with inheritance in your code. For more detail on this pillar, review the inheritance tutorial.
+In your design document or project brief: 
+Jot down the objects you want to serve as the starting point for your project concept. 
+
+
+2.  Polymorphism - choose your behaviors
+After you decide on the types and subtypes of objects you might use for your project, think about the types of behaviors those objects could perform in your program, and how those behaviors might “morph” depending on the object subtype. For example:
+All animals might have a Jump() function, but a cat might have different jumping capabilities than a dog. 
+All vehicles might have a Move() function, but a plane moves in all three dimensions and can’t move in reverse. 
+All toasters might have a Toast() function, but the premium toaster may also have a special “bagel” setting.
+As you know, polymorphism also refers to the fact that methods of the same name can be overloaded with different parameter types to have many forms (“poly” + ”morphs”). You might also consider the different parameter inputs one of these methods could take. For example, a Jump() function could take the max height of the jump [Jump(float maxHeight)] or the force applied to it [Jump(Vector3 jumpForce)].
+For more detail on this pillar, review the polymorphism tutorial.
+In your design document or project brief: 
+List the types of functions or behaviors that you would like to program in your application. 
+
+
+3.  Encapsulation - choose your data
+Encapsulation is all about protecting data in a class so that it cannot be misused and break your application. Think about which data you want to protect in this way, while still allowing other classes to get or set it. For example:
+For an animal, you may need to get or set its name, but prevent the name from being too long. 
+For a vehicle, you may need to get or set its year, but ensure the year is not a negative number. 
+For a toaster, you may need to get or set the type of bread, but ensure it’s a valid bread option.
+For more detail on this pillar, review the encapsulation tutorial.
+In your design document or project brief: 
+Record the types of functions or data you want to encapsulate in your project.
+
+
+4.  Abstraction - choose your functions
+Abstraction will probably be the easiest concept to implement once you are already coding, but it may be helpful to think of some of the high-level functions you want in your project before getting started. For example:
+For animals, you might have Walk(), Jump(), Talk() functions.
+For vehicles, you might have TurnOn(), Move(), and TurnOff() functions.
+For toasters, you might have Start(), SetLevel(), and Cancel() functions.
+For more detail on this pillar, review the abstraction tutorial.
+In your design document or project brief: 
+Note some of the higher-level functions that could be useful for reuse in your code. 
+You should now have some idea for what you want to achieve in your project — even if it still feels very conceptual — and you should have your ideas recorded in a document. 
+If you are still feeling lost with no idea what to do for your project, here’s an idea for an extremely simple project:
+There are three different colored shapes that inherit from a base “shape” class (inheritance).
+When you click on each shape, it prints something different to the screen through an overriden DisplayText() function (polymorphism).
+Each shape contains data, such as its name or color, which are stored as properties with getters and setters (encapsulation).
+Code is organized in a way that reduces duplicate code through higher level methods (abstraction).
+
+
+
